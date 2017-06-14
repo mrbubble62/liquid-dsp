@@ -46,7 +46,7 @@
 #include <emmintrin.h>  // SSE2
 #endif
 
-#if HAVE_PMMINTRIN_H
+#ifdef HAVE_SSE3
 #include <pmmintrin.h>  // SSE3
 #endif
 
@@ -197,7 +197,7 @@ void dotprod_rrrf_execute_mmx(dotprod_rrrf _q,
     // aligned output array
     float w[4] __attribute__((aligned(16)));
 
-#if HAVE_PMMINTRIN_H
+#ifdef HAVE_SSE3
     // fold down into single value
     __m128 z = _mm_setzero_ps();
     sum = _mm_hadd_ps(sum, z);
@@ -275,7 +275,7 @@ void dotprod_rrrf_execute_mmx4(dotprod_rrrf _q,
     // aligned output array
     float w[4] __attribute__((aligned(16)));
 
-#if HAVE_PMMINTRIN_H
+#ifdef HAVE_SSE3
     // SSE3: fold down to single value using _mm_hadd_ps()
     __m128 z = _mm_setzero_ps();
     sum0 = _mm_hadd_ps(sum0, z);

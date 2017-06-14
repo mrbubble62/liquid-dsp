@@ -45,7 +45,7 @@
 #include <emmintrin.h>  // SSE2
 #endif
 
-#if HAVE_PMMINTRIN_H
+#ifdef HAVE_SSE3
 #include <pmmintrin.h>  // SSE3
 #endif
 
@@ -79,7 +79,7 @@ float liquid_sumsqf(float *      _v,
     // aligned output array
     float w[4] __attribute__((aligned(16)));
 
-#if HAVE_PMMINTRIN_H
+#ifdef HAVE_SSE3
     // fold down into single value
     __m128 z = _mm_setzero_ps();
     sum = _mm_hadd_ps(sum, z);

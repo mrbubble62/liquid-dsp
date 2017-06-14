@@ -45,7 +45,7 @@
 #include <emmintrin.h>  // SSE2
 #endif
 
-#if HAVE_PMMINTRIN_H
+#ifdef HAVE_SSE3
 #include <pmmintrin.h>  // SSE3
 #endif
 
@@ -219,7 +219,7 @@ void dotprod_cccf_execute_mmx(dotprod_cccf    _q,
     // aligned output array
     float w[4] __attribute__((aligned(16))) = {0,0,0,0};
 
-#if HAVE_PMMINTRIN_H
+#ifdef HAVE_SSE3
     // SSE3
     __m128 s;   // dot product
     __m128 sum = _mm_setzero_ps(); // load zeros into sum register
@@ -250,7 +250,7 @@ void dotprod_cccf_execute_mmx(dotprod_cccf    _q,
         // shuffle values
         cq = _mm_shuffle_ps( cq, cq, _MM_SHUFFLE(2,3,0,1) );
         
-#if HAVE_PMMINTRIN_H
+#ifdef HAVE_SSE3
         // SSE3: combine using addsub_ps()
         s = _mm_addsub_ps( ci, cq );
 
@@ -271,7 +271,7 @@ void dotprod_cccf_execute_mmx(dotprod_cccf    _q,
 #endif
     }
 
-#if HAVE_PMMINTRIN_H
+#ifdef HAVE_SSE3
     // unload packed array
     _mm_store_ps(w, sum);
 #endif
