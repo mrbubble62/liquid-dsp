@@ -214,7 +214,9 @@ else
                        src/dotprod/src/sumsq.o"
         # TODO: check these flags
         #ARCH_OPTION="-ffast-math -mcpu=cortex-a8 -mfloat-abi=softfp -mfpu=neon";;
-        ARCH_OPTION="-ffast-math -mcpu=cortex-a7 -mfloat-abi=hard -mfpu=neon-vfpv4";;
+        #ARCH_OPTION="-ffast-math -mcpu=cortex-a7 -mfloat-abi=hard -mfpu=neon-vfpv4";;
+        # Allwinner R8 
+        ARCH_OPTION="-ffast-math -mcpu=cortex-a8 -mfloat-abi=hard -mfpu=neon";;
     *)
         # unknown architecture : use portable C version
         MLIBS_DOTPROD="src/dotprod/src/dotprod_cccf.o \
